@@ -1,0 +1,38 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "inventory backend",
+  "main": "index.ts",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production ts-node src/index.ts",
+    "dev": "cross-env NODE_ENV=development ts-node-dev src/index.ts",
+    "test": "cross-env NODE_ENV=test vitest run",
+    "start:test": "cross-env NODE_ENV=test ts-node src/index.ts",
+    "build:ui": "rm -rf dist && cd ../frontend && npm run build && cp -r dist ../backend",
+    "lint": "eslint ."
+  },
+  "author": "Matthew Burton",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@stylistic/eslint-plugin": "^2.11.0",
+    "@types/cors": "^2.8.17",
+    "@types/eslint__js": "^8.42.3",
+    "@types/express": "^5.0.0",
+    "eslint": "^9.15.0",
+    "supertest": "^7.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.15.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "glob": "^11.0.0",
+    "rimraf": "^6.0.1",
+    "vitest": "^2.1.5"
+  }
+}

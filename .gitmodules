@@ -1,0 +1,7 @@
+[submodule "app-one"]
+	path = app-one
+	url = https://github.com/matthewb-ATEC/app-one
+
+[submodule "app-two"]
+	path = app-two
+	url = https://github.com/matthewb-ATEC/app-two
