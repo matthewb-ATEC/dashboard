@@ -3,18 +3,17 @@ import { applications } from '../applications'
 
 const Dashboard = () => {
   const sortedApplications = applications.sort((a, b) => {
-    if (a.title < b.title) {
-      return -1
+    if (a.enabled !== b.enabled) {
+      return a.enabled ? -1 : 1
     }
-    if (a.title > b.title) {
-      return 1
-    }
-    return 0
+    return a.title.localeCompare(b.title)
   })
+
+  console.log(sortedApplications)
 
   return (
     <div className="bg-gray-50 flex flex-grow items-center justify-center">
-      <div className="grid gap-8 grid-cols-1 md:grid-cols-3 mx-6 md:m-16">
+      <div className="grid gap-8 grid-cols-1 md:grid-cols-3 m-6 md:m-16">
         {sortedApplications.map((application) => (
           <Application
             key={application.id}
