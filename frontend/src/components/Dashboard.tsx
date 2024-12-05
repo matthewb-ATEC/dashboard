@@ -1,5 +1,6 @@
 import Application from './Application'
 import { applications } from '../applications'
+import Body from './Body'
 
 const Dashboard = () => {
   const sortedApplications = applications.sort((a, b) => {
@@ -12,8 +13,8 @@ const Dashboard = () => {
   console.log(sortedApplications)
 
   return (
-    <div className="bg-gray-50 flex flex-grow items-center justify-center">
-      <div className="grid gap-8 grid-cols-1 md:grid-cols-3 m-6 md:m-16">
+    <Body>
+      <div className="grid gap-8 grid-cols-[1fr] md:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr]">
         {sortedApplications.map((application) => (
           <Application
             key={application.id}
@@ -25,7 +26,7 @@ const Dashboard = () => {
           />
         ))}
       </div>
-    </div>
+    </Body>
   )
 }
 

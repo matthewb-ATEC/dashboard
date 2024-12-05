@@ -1,3 +1,6 @@
+import Container from './Container'
+import { Subtitle, Title } from './Text'
+
 interface ApplicationProps {
   link: string
   iconName: string
@@ -16,32 +19,34 @@ const Application = ({
   if (enabled)
     return (
       <a className="flex flex-grow" href={link} rel="noopener noreferrer">
-        <div className="flex flex-grow rounded-md bg-white shadow-md flex items-center text-center justify-center">
-          <div className="flex flex-col space-y-4 p-8">
+        <Container>
+          <div className="flex flex-col h-full justify-center items-center text-center space-y-4">
             {/* Icons provided by google fonts icons */}
-            <i className="material-icons text-ATECblue text-5xl">{iconName}</i>
+            <i className="material-icons text-atec-light text-5xl">
+              {iconName}
+            </i>
 
             <div className="flex flex-col space-y-2">
-              <div className="font-semibold text-2xl">{title}</div>
-              <div className="text-gray-500 text-wrap">{description}</div>
+              <Title className="text-xl" text={title} />
+              <Subtitle text={description} />
             </div>
           </div>
-        </div>
+        </Container>
       </a>
     )
 
   return (
-    <div className="flex flex-grow rounded-md bg-white shadow-md flex items-center text-center justify-center">
-      <div className="flex flex-col space-y-4 p-8">
+    <Container>
+      <div className="flex flex-col h-full justify-center items-center text-center space-y-4 p-4">
         {/* Icons provided by google fonts icons */}
-        <i className="material-icons text-gray-400 text-5xl">{iconName}</i>
+        <i className="material-icons text-gray-300 text-5xl">{iconName}</i>
 
         <div className="flex flex-col space-y-2">
-          <div className="font-semibold text-gray-400 text-2xl">{title}</div>
-          <div className="text-gray-300 text-wrap">{description}</div>
+          <div className="font-semibold text-gray-300 text-xl">{title}</div>
+          <div className="text-gray-200">{description}</div>
         </div>
       </div>
-    </div>
+    </Container>
   )
 }
 
