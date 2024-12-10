@@ -1,7 +1,7 @@
 export const applications = [
   {
     id: 1,
-    link: `http://app.advancetecllc.com/expense-report`,
+    link: `http://expense-report.advancetecllc.com/`,
     iconName: `request_quote`,
     title: `Expense Report`,
     description: `File your expenses`,
@@ -9,7 +9,7 @@ export const applications = [
   },
   {
     id: 2,
-    link: `http://app.advancetecllc.com/inventory`,
+    link: `http://inventory.advancetecllc.com/`,
     iconName: `inventory`,
     title: `Inventory`,
     description: `View and manage warehouse stock`,
@@ -17,7 +17,7 @@ export const applications = [
   },
   {
     id: 3,
-    link: `http://app.advancetecllc.com/fabrication-tracker`,
+    link: `http://fabrication-tracker.advancetecllc.com/`,
     iconName: `construction`,
     title: `Fabrication Tracker`,
     description: `Manage delivery goals and track completion`,
@@ -25,7 +25,7 @@ export const applications = [
   },
   {
     id: 4,
-    link: `http://app.advancetecllc.com/safety-inspection`,
+    link: `http://safety-inspection.advancetecllc.com/`,
     iconName: `health_and_safety`,
     title: `Safety Inspection`,
     description: `Review procedures and record safety inspections`,
@@ -33,7 +33,7 @@ export const applications = [
   },
   {
     id: 5,
-    link: `http://app.advancetecllc.com/hours-report`,
+    link: `http://hours-report.advancetecllc.com/`,
     iconName: `work_history`,
     title: `Hours Report`,
     description: `Report hours worked on site`,
@@ -41,7 +41,7 @@ export const applications = [
   },
   {
     id: 6,
-    link: `http://app.advancetecllc.com/process-flowchart`,
+    link: `http://process-flowchart.advancetecllc.com/`,
     iconName: `account_tree`,
     title: `Process Flowchart`,
     description: `Review steps for different material types`,
@@ -49,7 +49,7 @@ export const applications = [
   },
   {
     id: 7,
-    link: `http://app.advancetecllc.com/unistrut-calculator`,
+    link: `http://unistrut-calculator.advancetecllc.com/`,
     iconName: `calculate`,
     title: `Unistrut Calculator`,
     description: `Calculate part quantities from strut connections`,
