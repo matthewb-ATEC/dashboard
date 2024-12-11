@@ -16,13 +16,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Check out the code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
 
       # Backend
       - name: Set up Node.js for Backend
-        uses: actions/setup-node@v4.1.0
+        uses: actions/setup-node@v4
         with:
-          node-version: '22.11.0'
+          node-version: '18.20.4'
 
       - name: Install Backend dependencies
         working-directory: backend
@@ -34,11 +34,18 @@ jobs:
         run: |
           npm run lint
 
+      - name: Run unit tests for Backend
+        env:
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+        working-directory: backend
+        run: |
+          npm run test
+
       # Frontend
       - name: Set up Node.js for Frontend
-        uses: actions/setup-node@v4.1.0
+        uses: actions/setup-node@v4
         with:
-          node-version: '22.11.0'
+          node-version: '18.20.4'
 
       - name: Install Frontend dependencies
         working-directory: frontend
@@ -50,24 +57,40 @@ jobs:
         run: |
           npm run test
 
-      # Deployment
-      - name: Build Frontend UI
-        working-directory: frontend
+      # End to end tests
+      - name: Run end to end tests
+        env:
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          PORT: 3001
         run: |
-          npm run build
+          cd ./backend && npm run start:test &
+          cd ./frontend && npm run dev &
+          cd ./end-to-end-tests && npm ci && npx playwright install --with-deps && npm run test
 
-      - name: Copy Frontend build to Backend
-        run: |
-          rm -rf ./backend/dist && cp -r ./frontend/dist ./backend
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: ./end-to-end-tests/playwright-report/
+          retention-days: 30
 
+      # Combined Build and Deployment Step
       - name: Set up Flyctl
         if: ${{ env.SHOULD_DEPLOY_AND_TAG == 'true' }}
         uses: superfly/flyctl-actions/setup-flyctl@master
 
-      - name: Deploy to Fly.io
+      - name: Build and Deploy
         if: ${{ env.SHOULD_DEPLOY_AND_TAG == 'true' }}
-        working-directory: backend
         run: |
+          cd frontend
+          npm run build
+          cd ..
+
+          rm -rf ./backend/dist
+          cp -r ./frontend/dist ./backend
+
+          cd backend
           flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
@@ -78,7 +101,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Check out the code
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.merge_commit_sha }}
           fetch-depth: '0'
