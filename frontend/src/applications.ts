@@ -33,14 +33,6 @@ export const applications = [
   },
   {
     id: 5,
-    link: `http://hours-report.advancetecllc.com/`,
-    iconName: `work_history`,
-    title: `Hours Report`,
-    description: `Report hours worked on site`,
-    enabled: false,
-  },
-  {
-    id: 6,
     link: `http://process-flowchart.advancetecllc.com/`,
     iconName: `account_tree`,
     title: `Process Flowchart`,
@@ -48,7 +40,7 @@ export const applications = [
     enabled: false,
   },
   {
-    id: 7,
+    id: 6,
     link: `http://unistrut-calculator.advancetecllc.com/`,
     iconName: `calculate`,
     title: `Unistrut Calculator`,
